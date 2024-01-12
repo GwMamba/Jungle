@@ -1,6 +1,10 @@
 <h1>Categories</h1>
 
-<table>
+<div class="actions">
+  <%= link_to 'New Category', new_admin_category_path, class: "btn btn-primary" %>
+</div>
+
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -11,10 +15,11 @@
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.name %></td>
-        </tr>
+      </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New Category', new_admin_category_path %>
-<%= link_to 'Back', admin_root_path %>
+      
+<div class="actions">
+  <%= link_to 'Back', admin_root_path %>
+</div>
