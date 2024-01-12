@@ -13,8 +13,12 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show]
 
   namespace :admin do
+    concern :basic_auth do
+      resources :products, except: [:edit, :update, :show]
+    end
+    
+    concerns :basic_auth
     root to: 'dashboard#show'
-    resources :products, except: [:edit, :update, :show]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
