@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   namespace :admin do
     concern :basic_auth do
       resources :products, except: [:edit, :update, :show]
+      resources :categories # Added to include category routes
     end
     
     concerns :basic_auth
