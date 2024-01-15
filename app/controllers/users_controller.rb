@@ -17,4 +17,3 @@ private
     params.require(:user).permit(:name, :email, :password_confirmation)
   end
 end
-```
