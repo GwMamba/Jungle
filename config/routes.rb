@@ -36,6 +36,11 @@ Rails.application.routes.draw do
   # Gif Routes
   get '/cool' => 'gif#cool'
   get '/sweet' => 'gif#sweet'
+
+  # Session Routes
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
