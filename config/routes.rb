@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'gif/cool'
+  get 'gif/free'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
