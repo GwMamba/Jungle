@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+  get 'users/create'
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
@@ -23,8 +25,15 @@ Rails.application.routes.draw do
   end
 
   get '/about', to: 'about#index', as: :about
-  
 
+  # User Registration Routes
+  get '/signup' => 'users#new'
+  get '/users' => 'users#create'
+
+  # Gif Routes
+  get '/cool' => 'gif#cool'
+  get '/sweet' => 'gif#sweet'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
