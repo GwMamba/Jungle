@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
+  resources :users, only: [:new, :create]
 
   resource :cart, only: [:show] do
     post   :add_item
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
 
   # User Registration Routes
   get '/signup' => 'users#new'
-  get '/users' => 'users#create'
+  post '/signup' => 'users#create'
 
   # Gif Routes
   get '/cool' => 'gif#cool'
