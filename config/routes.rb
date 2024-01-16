@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     concern :basic_auth do
       resources :products, except: [:edit, :update, :show]
       resources :categories # Added to include category routes
+      resources :sales, only: [:index, :new]
     end
     
     concerns :basic_auth
