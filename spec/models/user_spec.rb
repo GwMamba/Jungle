@@ -35,6 +35,33 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  it 'is invalid with a password shorter than the minimum length' do
+    user = User.new(
+      email: 'test@example.com',
+      password: 'short',
+      password_confirmation: 'short'
+    )
+    expect(user).to_not be_valid
+  end
+
+  it 'is valid with a password equal to the minimum length' do
+    user = User.new(
+      email: 'test@example.com',
+      password: 'validpass',
+      password_confirmation: 'validpass'
+    )
+    expect(user).to be_valid
+  end
+
+  it 'is valid with a password longer than the minimum length' do
+    user = User.new(
+      email: 'test@example.com',
+      password: 'longpassword',
+      password_confirmation: 'longpassword'
+    )
+    expect(user).to be_valid
+  end
+
   it 'is invalid with a non-unique email (case-insensitive)' do
     existing_user = User.create(
       email: 'test@example.com',
