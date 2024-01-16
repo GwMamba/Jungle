@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
       password_confirmation: 'password123'
     )
     user = User.new(
-      email: 'TEST@example.com',
+      email: 'test@example.com',
       password: 'differentpassword',
       password_confirmation: 'differentpassword'
     )
@@ -103,6 +103,49 @@ RSpec.describe User, type: :model do
     )
     expect(user).to_not be_valid
   end
-  
 
+  it 'returns the user when provided with the correct credentials' do
+    user = User.create(
+      email: 'test@example.com',
+      password: 'password123',
+      password_confirmation: 'password123'
+    )
+    authenticated_user = User.authenticate_with_credentials('test@example.com', 'password123')
+    expect(authenticated_user).to eq(user)
+  end
+
+  it 'returns nil when provided with incorrect password' do
+    user = User.create(
+      email: 'test@example.com',
+      password: 'password123',
+      password_confirmation: 'password123'
+    )
+    authenticated_user = User.authenticate_with_credentials('test@example.com', 'wrongpassword')
+    expect(authenticated_user).to be_nil
+  end
+
+  it 'returns nil when provided with an email not in the database' do
+    authenticated_user = User.authenticate_with_credentials('nonexistent@example', 'password123')
+    expect(authenticated_user).to be_nil
+  end
+
+  it 'returns the user when provided with an email with leading or trailing whitespace' do
+    user = User.create(
+      email: 'test@example.com',
+      password: 'password123',
+      password_confirmation: 'password123'
+    )
+    authenticated_user = User.authenticate_with_credentials('  test@example.com  ', 'password123')
+    expect(authenticated_user).to eq(user)
+  end
+
+  it 'returns the user when provided with an email with different letter case' do
+    user = User.create(
+      email: 'test@example.com',
+      password: 'password123',
+      password_confirmation: 'password123'
+    )
+    authenticated_user = User.authenticate_with_credentials('test@example.com', 'password123')
+    expect(authenticated_user).to eq(user)
+  end
 end
