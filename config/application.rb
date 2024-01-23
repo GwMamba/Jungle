@@ -11,6 +11,14 @@ module New
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # Load Google Cloud API key from config file
+    config.before_configuration do
+      env_file = Rails.root.join("config", "google_cloud.yml")
+      YAML.load(File.open(env_file))[Rails.env]/each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exist?(env_file)
+    end  
+    
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
