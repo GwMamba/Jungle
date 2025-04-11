@@ -1,0 +1,8 @@
+development:
+  translation_api_key: <%= ENV["TRANSLATION_API_KEY_DEVELOPMENT"] %>
+
+test:
+  translation_api_key: <%= ENV["TRANSLATION_API_KEY_TEST"] %>
+
+production:
+  translation_api_key: <%= ENV["TRANSLATION_API_KEY_PRODUCTION"] %>
