@@ -29,7 +29,25 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
+# Internationalization (i18n) Configuration
+# ------------------------------------------
+# This file contains translations for the English locale.
+# To add translations for other languages, create additional files in this directory.
+
+# Example structure for translations
+
 en:
+  locales:
+    en: 'English'
+    ja: 'Japanese'
+  welcome:
+    greeting: "Welcome to our website!"
+  about_us:
+    title: "About Us"
+    description: "Learn more about our company and mission."
+  contact:
+    title: "Contact Us"
+    description: "Get in touch with us."
   number:
     currency:
       format:
