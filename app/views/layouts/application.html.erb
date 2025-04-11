@@ -28,6 +28,12 @@
       <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
     <% end %>
 
+    <div id="language=selector">
+      <%= form_tag(change_language_path, method: :post, class: 'form-inline') do %>
+        <%= select_tag(:locale, options_for_select([['English', 'en'], ['日本語', 'ja']], I18n.locale.to_s), class: 'form-control', onchange: 'this.form.submit();') %>
+      <% end %>
+    </div>
+
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>">
         <%= value %>
