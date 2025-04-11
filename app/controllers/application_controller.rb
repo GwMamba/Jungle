@@ -12,7 +12,15 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to '/login' unless current_user
   end
-  
+
+  def set_locale
+    I18n.locale = session[:language_preference] || I18n.default_locale
+  end
+
+  def change_language
+    redirect_to(request.referer || root_path)
+  end  
+
   private
 
   def cart
@@ -38,4 +46,9 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+
+  def extract_locale_from_accept_language_header
+    request.env['HTTP_ACCEPT_LANGUAGE']&.scan(/^[a-z]{2}/)&.first&.in?(I18n.available_locales.map(&:to_s))
+  end
+
 end
